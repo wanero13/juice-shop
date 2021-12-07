@@ -252,3 +252,29 @@
   securityQuestion:
     id: 10
     answer: "Used Ship Emporium" # https://monkeyisland.fandom.com/wiki/Stan_S._Stanman
+-    
+  email: pachniar
+  password: 'av56&*1qazX'
+  key: pachniar
+  role: 'customer'
+  address:
+    - fullName: 'Rafal Pachnia'
+      mobileNum: 48123321123
+      zipCode: '6969'
+      streetAddress: '221b Baker Street'
+      city: 'Warszawa'
+      state: 'Mazowsze'
+      country: 'Polska'
+  card:
+    - fullName: 'Rafal Pachnia'
+      cardNum: 1111222242006669
+      expMonth: 10
+      expYear: 2050
+-
+  email: rkp
+  password: 'Ui0(t#aVxcv56'
+  key: rkp
+  role: 'admin'
+  securityQuestion:
+    id: 10
+    answer: 'Pan Tadeusz - Adam Mickiewicz'
