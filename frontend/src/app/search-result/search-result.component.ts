@@ -123,7 +123,7 @@ export class SearchResultComponent implements OnDestroy, AfterViewInit {
 
   trustProductDescription (tableData: any[]) {
     for (let i = 0; i < tableData.length; i++) {
-      tableData[i].description = this.sanitizer.sanitize(SecurityContext.HTML tableData[i].description) // vuln-code-snippet vuln-line restfulXssChallenge
+      tableData[i].description = this.sanitizer.sanitize(SecurityContext.HTML, tableData[i].description) // vuln-code-snippet vuln-line restfulXssChallenge
     }
   }
   // vuln-code-snippet end restfulXssChallenge
