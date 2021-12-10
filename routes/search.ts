@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+const { QueryTypes } = require('sequelize');
 import models = require('../models/index')
 const utils = require('../lib/utils')
 const challenges = require('../data/datacache').challenges
@@ -12,7 +13,11 @@ module.exports = function searchProducts () {
   return (req, res, next) => {
     let criteria = req.query.q === 'undefined' ? '' : req.query.q || ''
     criteria = (criteria.length <= 200) ? criteria : criteria.substring(0, 200)
-    models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%${criteria}%' OR description LIKE '%${criteria}%') AND deletedAt IS NULL) ORDER BY name`) // vuln-code-snippet vuln-line unionSqlInjectionChallenge dbSchemaChallenge
+    models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%:status%' OR description LIKE '%:status%') AND deletedAt IS NULL) ORDER BY name` ,
+    {
+      replacements: { status: criteria },
+      type: QueryTypes.SELECT
+    }) // vuln-code-snippet vuln-line unionSqlInjectionChallenge dbSchemaChallenge
       .then(([products]) => {
         const dataString = JSON.stringify(products)
         if (utils.notSolved(challenges.unionSqlInjectionChallenge)) { // vuln-code-snippet hide-start
